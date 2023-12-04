@@ -1,7 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-
-$color-text: #f5f5f5;
-
 *,
 *::before,
 *::after {
@@ -12,38 +9,30 @@ $color-text: #f5f5f5;
 
 html {
   box-sizing: border-box;
-
-  font-size: 62.5%; // 1 rem = 10 px (browser default is 16)
-
-  @media (max-width: 1700px) {
-    font-size: 56.25%;
-  }
-
-  @media (max-width: 1200px) {
-    font-size: 50%;
-  }
-
+  font-size: 12px;
+  font-weight:800;
   @media (max-width: 750px) {
-    font-size: 40%;
+    font-size: 7px;
   }
+  @media (max-width: 1200px) {
+    font-size: 9px;
+  }
+  @media (max-width: 1700px) {
+    font-size: 10px
+  } 
 }
 
 body {
   min-height: 100vh;
-  // background-color: rgb(37, 77, 165);
   background-image: linear-gradient(
-      to right,
-      rgba(black, 0.4),
-      rgba(black, 0.4)
+      to bottom,
+      rgba(rgb(250, 18, 37), 0.4),
+      rgba(rgb(0, 0, 0), 0.4)
     ),
     url('../assets/bg.gif');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: $color-text;
+  color: #f5f5f5;
   font-family: montserrat, sans-serif;
-}
-
-li {
-  list-style: none;
 }

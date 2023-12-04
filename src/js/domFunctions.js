@@ -1,6 +1,5 @@
 import * as utils from './utils';
 
-// changes the hour forecast display to next or previous forecasts
 function changeHoursPage(hoursPage) {
   const hourForecasts = document.querySelectorAll('.forecast-hourly');
   const dots = document.querySelectorAll('.dot');
@@ -8,17 +7,14 @@ function changeHoursPage(hoursPage) {
   const dot2 = document.querySelector('.dot2');
   const dot3 = document.querySelector('.dot3');
 
-  // set all forecasts to display: none
   hourForecasts.forEach((forecast) => {
     forecast.style.display = 'none';
   });
 
-  // remove selected styling from hour page nav dots
   dots.forEach((dot) => {
     dot.classList.remove('dot-selected');
   });
 
-  // if hours page = 1, display first hours page
   if (hoursPage === 1) {
     document.querySelector('#current-hour-plus-1').style.display = 'flex';
     document.querySelector('#current-hour-plus-2').style.display = 'flex';
@@ -28,11 +24,9 @@ function changeHoursPage(hoursPage) {
     document.querySelector('#current-hour-plus-6').style.display = 'flex';
     document.querySelector('#current-hour-plus-7').style.display = 'flex';
     document.querySelector('#current-hour-plus-8').style.display = 'flex';
-
     dot1.classList.add('dot-selected');
   }
-  // if hours page = 2, display second hours page
-  if (hoursPage === 2) {
+  else if (hoursPage === 2) {
     document.querySelector('#current-hour-plus-9').style.display = 'flex';
     document.querySelector('#current-hour-plus-10').style.display = 'flex';
     document.querySelector('#current-hour-plus-11').style.display = 'flex';
@@ -41,12 +35,9 @@ function changeHoursPage(hoursPage) {
     document.querySelector('#current-hour-plus-14').style.display = 'flex';
     document.querySelector('#current-hour-plus-15').style.display = 'flex';
     document.querySelector('#current-hour-plus-16').style.display = 'flex';
-
     dot2.classList.add('dot-selected');
   }
-
-  // if hours page = 3, display third hours page
-  if (hoursPage === 3) {
+  else if (hoursPage === 3) {
     document.querySelector('#current-hour-plus-17').style.display = 'flex';
     document.querySelector('#current-hour-plus-18').style.display = 'flex';
     document.querySelector('#current-hour-plus-19').style.display = 'flex';
@@ -55,44 +46,26 @@ function changeHoursPage(hoursPage) {
     document.querySelector('#current-hour-plus-22').style.display = 'flex';
     document.querySelector('#current-hour-plus-23').style.display = 'flex';
     document.querySelector('#current-hour-plus-24').style.display = 'flex';
-
     dot3.classList.add('dot-selected');
   }
 }
 
 function displayDailyForecast() {
-  // toggle selected button styling for different forecast buttons
   document.querySelector('.hourly-btn').classList.toggle('forecast-selected');
   document.querySelector('.daily-btn').classList.toggle('forecast-selected');
-
-  // hide hourly forecasts
-  document.querySelector('.forecast-hourly-outer-container').style.display =
-    'none';
-
-  // show daily forecast
+  document.querySelector('.forecast-hourly-outer-container').style.display = 'none';
   document.querySelector('.forecast-daily-container').style.display = 'flex';
-
-  // hide change hourly forecast page buttons
   document.querySelector('.change-hours').style.display = 'none';
 }
 
 function displayHourlyForecast() {
-  // toggle selected button styling for different forecast buttons
   document.querySelector('.hourly-btn').classList.toggle('forecast-selected');
   document.querySelector('.daily-btn').classList.toggle('forecast-selected');
-
-  // hide daily forecasts
   document.querySelector('.forecast-daily-container').style.display = 'none';
-
-  // show hourly forecasts
-  document.querySelector('.forecast-hourly-outer-container').style.display =
-    'block';
-
-  // show change hourly forecast page buttons
+  document.querySelector('.forecast-hourly-outer-container').style.display = 'block';
   document.querySelector('.change-hours').style.display = 'flex';
 }
 
-// render top left weather data
 function renderWeatherInformation(data, units) {
   let tempUnit = '°C';
 
@@ -118,7 +91,6 @@ function renderWeatherInformation(data, units) {
   temperatureIcon.innerHTML = utils.getIcon(data.current.weather[0].icon);
 }
 
-// render top right wether details
 function renderWeatherDetails(data, units) {
   let tempUnit = '°C';
   let speedUnit = 'km/h';
@@ -128,29 +100,26 @@ function renderWeatherDetails(data, units) {
     speedUnit = 'mph';
   }
 
-  // convert windspeed from meters per second to km/h
   if (units === 'metric') {
     data.current.wind_speed *= 3.6;
   }
-
   const temperatureFeelsLike = document.querySelector('#feels-like');
-
   temperatureFeelsLike.textContent = `${Math.round(
     data.current.feels_like
   )} ${tempUnit}`;
 
   const humidity = document.querySelector('#humidity');
   humidity.textContent = `${data.current.humidity} %`;
+
   const chanceOfRain = document.querySelector('#chance-of-rain');
-  chanceOfRain.textContent = `${data.daily[0].pop *100} %`;
+  chanceOfRain.textContent = `${Math.round(data.daily[0].pop *100)} %`;
+  
   const windSpeed = document.querySelector('#wind-speed');
-  // round to 1 decimal place
   windSpeed.textContent = `${
     Math.round(data.current.wind_speed * 10) / 10
   } ${speedUnit}`;
 }
 
-// render daily forecast
 function renderDailyForecast(data, units) {
   let tempUnit = '°C';
 
@@ -158,9 +127,6 @@ function renderDailyForecast(data, units) {
     tempUnit = '°F';
   }
 
-  // ##############################
-  // render the day of week name
-  // ##############################
   const dayPlusOneDay = document.querySelector(
     '#current-day-plus-one .forecast-daily__day'
   );
@@ -225,9 +191,6 @@ function renderDailyForecast(data, units) {
     'day'
   );
 
-  // ##############################
-  // render daily high temperature
-  // ##############################
   const dayPlusOneTempHigh = document.querySelector(
     '#current-day-plus-one .forecast-daily__temperature-high'
   );
@@ -277,9 +240,6 @@ function renderDailyForecast(data, units) {
     data.daily[7].temp.max
   )} ${tempUnit}`;
 
-  // ##############################
-  // render daily low temperature
-  // ##############################
   const dayPlusOneTempLow = document.querySelector(
     '#current-day-plus-one .forecast-daily__temperature-low'
   );
@@ -329,9 +289,6 @@ function renderDailyForecast(data, units) {
     data.daily[7].temp.min
   )} ${tempUnit}`;
 
-  // ##############################
-  // render daily weather icon
-  // ##############################
   const dayPlusOneIcon = document.querySelector(
     '#current-day-plus-one .forecast-daily__icon'
   );
@@ -368,7 +325,6 @@ function renderDailyForecast(data, units) {
   dayPlusSevenIcon.innerHTML = utils.getIcon(data.daily[7].weather[0].icon);
 }
 
-// render hourly forecast
 function renderHourlyForecast(data, units) {
   let tempUnit = '°C';
 
@@ -376,9 +332,6 @@ function renderHourlyForecast(data, units) {
     tempUnit = '°F';
   }
 
-  // ##############################
-  // render hourly time
-  // ##############################
   const hourPlus1Time = document.querySelector(
     '#current-hour-plus-1 .forecast-hourly__day'
   );
@@ -595,10 +548,6 @@ function renderHourlyForecast(data, units) {
     'hour'
   );
 
-  // ##############################
-  // render hourly temperature
-  // ##############################
-
   const hourPlus1Temperature = document.querySelector(
     '#current-hour-plus-1 .forecast-hourly__temperature-high'
   );
@@ -766,10 +715,6 @@ function renderHourlyForecast(data, units) {
   hourPlus24Temperature.textContent = `${Math.round(
     data.hourly[24].temp
   )} ${tempUnit}`;
-
-  // ##############################
-  // render hourly weather icon
-  // ##############################
 
   const hourPlus1Icon = document.querySelector(
     '#current-hour-plus-1 .forecast-hourly__icon'

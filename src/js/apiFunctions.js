@@ -23,11 +23,11 @@ function buildRequestCoordsUrl(cityName) {
 function getDataFromForm(){
     const input = document.querySelector('.search-box-input');
     const cityName = input.value;
-
+    let parsedCity = '';
     if(cityName){
-        return cityName.replace(/(\s+$|^\s+)/g, '').replace(/(,\s+)/g, ',').replace(/(\s+,)/g, ',').replace(/\s+/g, '+');
+        parsedCity = cityName.replace(/(\s+$|^\s+)/g, '').replace(/(,\s+)/g, ',').replace(/(\s+,)/g, ',').replace(/\s+/g, '+');
     }
-    return '';
+    return parsedCity;
 }
 
 export{
