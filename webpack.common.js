@@ -8,8 +8,7 @@ module.exports = {
   entry: './src/js/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/template.html',
-      favicon: `./src/assets/favicon.png`,
+      template: './src/template.html'
     }),
   ],
   module: {
