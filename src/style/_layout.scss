@@ -198,14 +198,15 @@ main {
   }
   &__icon {
     margin-top: 2rem;
-    width: 4rem;
+    width: 3rem;
     @media (max-width: 550px) {
       margin-top: 1rem;
     }
   }
   &__temperature {
     &-high {
-      margin-bottom: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1.2rem;
       font-size: 3rem;
       font-weight: 700;
       color:#fffb00;
@@ -216,7 +217,8 @@ main {
     }
   }
   &__day {
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
     font-size: 2rem;
     font-weight: 600;
     color:rgb(250, 18, 37);
@@ -285,7 +287,7 @@ main {
     }
     &-low {
       font-size: 1.2rem;
-      font-weight: 600;
+      font-weight: 300;
       color:#fffb00;
     }
     @media (max-width: 550px) {
